@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Portal - Service Level Agreements";
+}
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">SERVICE LEVEL AGREEMENTS</h3>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    This area would allow clients to view the service levels agreed upon between Digital Edge and the client.
+                    <br><br><br>
+
+
+                    Ex.
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Alerts</td>
+                            <td>Notification - 20 minutes. (This does not cover devices that are asked to be ignored or    are considered non-critical)</td>
+                        </tr>
+                        <tr>
+                            <td>Service Request SLA by type</td>
+                            <td>Digital Edge operates on a per client basis, meaning that each client depicts the criticality of each device/application, etc…</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                If a client does not choose to select a classification, Digital Edge utilizes its default;
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Classification</th>
+                                <th>Response Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Critical Production-</td>
+                                <td>Immediate. Applies for all clients if there is a notification that a critical production system is down. If the ticket is about production but is not describing down time or slowness or any other operational problem, the Critical Production category should not be used.</td>
+                            </tr>
+                            <tr>
+                                <td>Critical Non-Production-</td>
+                                <td>Up to 3 hours. Assign for all valid clients if equipment or system mentioned in the ticket does not appear to be production.</td>
+                            </tr>
+                            <tr>
+                                <td>Non-Critical-</td>
+                                <td>Up to 6 hours or will be executed at requested time. Applies to all client when the ticket mentions that could be done later or not critical or scheduled.</td>
+                            </tr>
+                            <tr>
+                                <td>General Request-</td>
+                                <td>Up to 6 hours. Applies to all clients when there is a question that is not affecting production operation.</td>
+                            </tr>
+                            <tr>
+                                <td>Vendor Request-</td>
+                                <td>Applies to tickets when a client is asking to send them a quote for new hardware or software. Such tickets will have to be transferred to Sales for future handling.</td>
+                            </tr>
+                            <tr>
+                                <td>Change Control</td>
+                                <td>Up to 3 hours or scheduled. Apply to any tickets that are requesting configuration change, software deployment and similar.</td>
+                            </tr>
+                            <tr>
+                                <td>Development Issue-</td>
+                                <td>Up to 24 hours. Applies to tickets that require programming or any type of coding/scripting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+}

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Portal - General Escalations";
+}
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">GENERAL ESCALATIONS</h3>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    Which team is responsible for which type of issues:
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Portal (cognos, weblogic, IIS);
+                                MSSQL jobs(search by job name in ServiceNow KB);
+
+                                <br><br>
+                                Database issues;
+                                <br><br>
+
+                                Intranet applications (check “SMTB Scheduled Jobs & Sunday Checklist” document in EMS docs&Maps);
+                                <br><br>
+
+                                Intranet Services (search by service name in ServiceNow KB)
+                            </td>
+                            <td>IT production support</td>
+                            <td>
+                                itproductionsupport@smtbusa.com
+                                <br><br>
+                                for portal issues also email to:
+                                ofss-web-support@smtbusa.com
+                                <br><br>
+                                For QA portal also CC:
+                                itqa@smtbusa.com
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Banking applications: JBOSS, GTX, Channels, Banks, SWIFT, Sterci, Firco, Global One</td>
+                            <td>IT production support</td>
+                            <td>
+                                itproductionsupport@smtbusa.com
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>For hardware, network, storage, Citrix, Permissions/Access/Password, Virtualization, OS, Monitoring level issues</td>
+                            <td>IT production support</td>
+                            <td>
+                                itadmin@smtbusa.com
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            On Call rotation info is in ServiceNow<br>
+            All Emails should be CC-ed with smtbusaaudit@smtbusa.com.<br>
+            If the environment is Production we are emailing to appropriate team and also calling to on call person.<br>
+            If the environment is UAT, DR or QA, during off hours only emailing and calling during working hours.<br>
+            For DEV we do not do anything.<br>
+            For any restarts (server, service, application pool recycles), any changes or any incidents we should have ticket in ServiceNow, if ticket wasn’t opened(generated) DE technician should open incident ticket.<br>
+            If there is any issue regarding Sungurd/FISGlobal (G+, sungard.com, fis, ibm07, ibm10, fisglobal.com) you can contact FISGlobal support: Tel. 610-964-4500; email dcstech@fisglobal.com, also keep ITProd team in loop.<br>
+            Sumitomo has password server. Search “Pleasant Password Server” pattern in Sumitomo’s EMS password page.<br>
+        </div>
+    </div>
+</div>
+@section Scripts {
+}

@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    @*<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">*@
+    <title>@ViewData["Title"]</title>
+    @*<link rel="canonical" href="https://www.wrappixel.com/templates/adminwrap/" />*@
+    <!-- Bootstrap Core CSS -->
+    <environment names="Staging,Production, Development">
+        @*<link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">*@
+
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
+        <!-- page css -->
+        <link href="~/css/login-register-lock.css" rel="stylesheet" asp-append-version="true">
+        <!-- Custom CSS -->
+        <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
+
+        <!-- You can change the theme colors from here -->
+        <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </environment>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Digital Edge</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                            <!-- dark Logo text -->
+                            <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="hidden-md-down">@this.User.Claims.FirstOrDefault(x => x.Type == "Name")?.Value &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            @*<div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>*@
+                                            <div class="u-text">
+                                                <h4>@this.User.Claims.FirstOrDefault(x => x.Type == "Name")?.Value</h4>
+                                                <p class="text-muted">@this.User.Claims.FirstOrDefault(x => x.Type == "Email")?.Value</p>
+                                                @*<a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>*@
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" aria-expanded="true" asp-area="" asp-controller="Home" asp-action="Index"><i class="icon-Car-Wheel"></i><span class="hide-menu">General </span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="icon-Car-Wheel"></i>Charts </a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="ITServices">IT Services</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="GeneralEscalations">General Escalations</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="ServiceLevelAgreements">Service Level Agreements</a></li>
+                            </ul>
+                        </li>
+                        @*<li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Current Activities </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Alerts </a></li>
+                                    <li><a href="#">Alerts Summary</a></li>
+                                    <li><a href="#">Tickets</a></li>
+                                    <li><a href="#">Projects</a></li>
+                                    <li><a href="#">Scheduled Activities</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Inventory </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Device List </a></li>
+                                    <li><a href="#">Sys Logs </a></li>
+                                    <li><a href="#">Device Audit </a></li>
+                                    <li><a href="#">Hardware </a></li>
+                                    <li><a href="#">Software </a></li>
+                                    <li><a href="#">Documents & Maps </a></li>
+                                    <li><a href="#">Network Configuration Repository </a></li>
+                                    <li><a href="#">IP Addresses </a></li>
+                                    <li><a href="#">Tape Repository </a></li>
+                                    <li><a href="#">Vendors </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Support Settings </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">IT Scheduling </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Monitoring </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Performance </a></li>
+                                    <li><a href="#">Content Monitoring </a></li>
+                                    <li><a href="#">E-mail </a></li>
+                                    <li><a href="#">Business Processes </a></li>
+                                    <li><a href="#">Monitoring Status </a></li>
+                                    <li><a href="#">Change Requests </a></li>
+                                    <li><a href="#">File Watcher </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Reports </span></a>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">DEdemo Tools </span></a>
+                            </li>*@
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <p>7 Teleport Drive • Staten Island, NY 10311 • 800.714.5143</p>
+            © @DateTime.Now.Year Digital Edge
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <environment names="Development, Staging, Production">
+        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="~/js/popper.min.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/js/waves.js" asp-append-version="true"></script>
+        <script src="~/js/sidebarmenu.js" asp-append-version="true"></script>
+        <script src="~/js/sticky-kit.min.js" asp-append-version="true"></script>
+        <script src="~/js/perfect-scrollbar.jquery.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.sparkline.min.js" asp-append-version="true"></script>
+        <script src="~/js/custom.js" asp-append-version="true"></script>
+        <script src="~/js/Chart.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <!--Wave Effects -->
+    <!--Custom JavaScript -->
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- Chart JS -->
+    @*<script src="../assets/node_modules/Chart.js/chartjs.init.js"></script>*@
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+</body>
+
+</html>

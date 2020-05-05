@@ -1,0 +1,365 @@
+﻿@{
+    ViewData["Title"] = "Portal - General information";
+}
+@model ChartsModel
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">GENERAL INFORMATION</h3>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Welcome to the Digital Edge Client Portal</h4>
+                    <br>
+                    For immediate assistance please open a support ticket by either clicking on “Open Support Ticket” or by emailing <a href="mailto:ticket@digitaledge.net">support@digitaledge.net</a>.
+</div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Tickets for @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("en"))</h4>
+                        @if(Model.ClosedTickets.TotalTickets > 0)
+                        {
+                               <div>
+                                   <canvas id="closedTickets" height="75"></canvas>
+                               </div>
+                        }                        
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered color-bordered-table info-bordered-table">
+                        <thead>
+                            <tr>
+                                <th>Total</th>
+                                <th>Critical Production</th>
+                                <th>Critical Non-Production</th>
+                                <th>Non-Critical</th>
+                                <th>General Request</th>
+                                <th>Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.ClosedTickets.TotalTickets</td>
+                                <td>@Model.ClosedTickets.CritProdTicktes</td>
+                                <td>@Model.ClosedTickets.CritNonProdTicktes</td>
+                                <td>@Model.ClosedTickets.NonCritTicktes</td>
+                                <td>@Model.ClosedTickets.GeneralTicktes</td>
+                                <td>@Model.ClosedTickets.Hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Open Tickets and Status</h4>
+                        @if(Model.OpenTickets.TotalTickets > 0)
+                        {
+                            <div>
+                                <canvas id="openTickets" height="75"></canvas>
+                            </div>
+                        }                        
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table color-bordered-table info-bordered-table">
+                        <thead>
+                            <tr>
+                                <th>Total</th>
+                                <th>In Process</th>
+                                <th>Pending</th>
+                                <th>Close Pending</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.OpenTickets.TotalTickets</td>
+                                <td>@Model.OpenTickets.InProcessTicktes</td>
+                                <td>@Model.OpenTickets.PendingTicktes</td>
+                                <td>@Model.OpenTickets.ClosePendingTicktes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Active Alerts</h4>
+                        @if(Model.Alerts.TotalAlerts > 0)
+                        {
+                            <div>
+                                <canvas id="activeAlerts" height="75"></canvas>
+                            </div>
+                        }                        
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table color-bordered-table info-bordered-table">
+                        <thead>
+                            <tr>
+                                <th>Total</th>
+                                <th>Active</th>
+                                <th>Suspended</th>
+                                <th>In Process</th>
+                                <th>Ignored</th>
+                                <th>Watched</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Alerts.TotalAlerts</td>
+                                <td>@Model.Alerts.ActiveAlerts</td>
+                                <td>@Model.Alerts.SuspendedAlerts</td>
+                                <td>@Model.Alerts.InProcessAlerts</td>
+                                <td>@Model.Alerts.IgnoredAlerts</td>
+                                <td>@Model.Alerts.WatchedAlerts</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Alerts Monthly for @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("en"))</h4>
+                        @if (Model.AlertsSummary.Any())
+                        {
+                            <div>
+                                <canvas id="summaryAlerts" height="75"></canvas>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table color-bordered-table info-bordered-table">
+                        <thead>
+                            <tr>
+                                @foreach (var alert in Model.AlertsSummary)
+                                {
+                                    <th>@alert.v</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var alert in Model.AlertsSummary)
+                                {
+                                    <th>@alert.value</th>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hardware</h4>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table color-bordered-table info-bordered-table">
+                        <thead>
+                            <tr>
+                                <th>Year to Date</th>
+                                <th>Not Resolved</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.HardwareFailureSummary.Year2Date</td>
+                                <td>
+                                    @Model.HardwareFailureSummary.NotResolved
+                                    @if (Model.HardwareFailureDetails.Any())
+                                    {
+                                        <a href="#" onclick="$('#hardwareFailuresDetails').toggle();$(this).text( $(this).text() == '(View)' ? '(Hide)':'(View)');return false;" style="text-decoration: none; border-bottom: 1px dotted;">(View)</a>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="hardwareFailuresDetails" class="table color-bordered-table info-bordered-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>Location</th>
+                                <th>LED Location</th>
+                                <th>Status</th>
+                                <th>Notes</th>
+                                <th>Follow-Up Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var fail in Model.HardwareFailureDetails)
+                            {
+                                <tr>
+                                    <td>@fail.DeviceName</td>
+                                    <td>@fail.Location</td>
+                                    <td>@fail.LedLocation</td>
+                                    <td>
+                                        @if (fail.NotAvaible)
+                                        {
+                                            <label class="custom-control-label">N/A</label>
+                                        }
+                                        @if (fail.PowerSupply)
+                                        {
+                                            <label class="custom-control-label">PS</label>
+                                        }
+                                        @if (fail.HardDrive)
+                                        {
+                                            <label class="custom-control-label">HD</label>
+                                        }
+                                        @if (fail.Attention)
+                                        {
+                                            <label class="custom-control-label">!</label>
+                                        }
+                                    </td>
+                                    <td>@fail.Note</td>
+                                    <td>@fail.MaxFollowUpDate.ToShortDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            if (@Model.ClosedTickets.TotalTickets > 0) {
+                new Chart(document.getElementById("closedTickets"),
+                {
+                    "type": "pie",
+                    "data": {
+                        "labels": ["Critical Production", "Critical Non-Production", "Non-Critical", "General Request"],
+                        "datasets": [{
+                            "label": "Closed tickets",
+                            "data": [@Model.ClosedTickets.CritProdTicktes, @Model.ClosedTickets.CritNonProdTicktes, @Model.ClosedTickets.NonCritTicktes, @Model.ClosedTickets.GeneralTicktes ],
+                            "backgroundColor": ["rgb(239, 83, 80)", "rgb(57, 139, 247)", "rgb(255, 178, 43)", "rgb(255, 53, 244)"]
+                        }]
+                    },
+                    "options": {
+                        "tooltips": {
+                            "callbacks": {
+                                "label": function (tooltipItem, data) {
+                                    var allData = data.datasets[tooltipItem.datasetIndex].data;
+                                    var tooltipLabel = data.labels[tooltipItem.index];
+                                    var tooltipData = allData[tooltipItem.index];
+                                    var total = 0;
+                                    for (var i in allData) {
+                                        total += allData[i];
+                                    }
+                                    var tooltipPercentage = Math.round((tooltipData / total) * 100);
+                                    return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            if (@Model.OpenTickets.TotalTickets > 0) {
+                new Chart(document.getElementById("openTickets"),
+                    {
+                        "type": "pie",
+                        "data": {
+                            "labels": ["In Process", "ClosePendingTicktes", "Non-Critical"],
+                            "datasets": [{
+                                "label": "Open tickets",
+                                "data": [@Model.OpenTickets.InProcessTicktes, @Model.OpenTickets.PendingTicktes, @Model.OpenTickets.ClosePendingTicktes],
+                                "backgroundColor": ["rgb(239, 83, 80)", "rgb(57, 139, 247)", "rgb(255, 178, 43)"]
+                            }]
+                        },
+                        "options": {
+                            "tooltips": {
+                                "callbacks": {
+                                    "label": function (tooltipItem, data) {
+                                        var allData = data.datasets[tooltipItem.datasetIndex].data;
+                                        var tooltipLabel = data.labels[tooltipItem.index];
+                                        var tooltipData = allData[tooltipItem.index];
+                                        var total = 0;
+                                        for (var i in allData) {
+                                            total += allData[i];
+                                        }
+                                        var tooltipPercentage = Math.round((tooltipData / total) * 100);
+                                        return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+                                    }
+                                }
+                            }
+                        }
+                    });
+            }
+            if (@Model.Alerts.TotalAlerts> 0) {
+                new Chart(document.getElementById("activeAlerts"),
+                    {
+                        "type": "pie",
+                        "data": {
+                            "labels": ["Active", "Suspended", "In Process", "Ignored", "Watched"],
+                            "datasets": [{
+                                "label": "Alerts",
+                                "data": [@Model.Alerts.ActiveAlerts, @Model.Alerts.SuspendedAlerts, @Model.Alerts.InProcessAlerts, @Model.Alerts.IgnoredAlerts, @Model.Alerts.WatchedAlerts ],
+                                "backgroundColor": ["rgb(239, 83, 80)", "rgb(57, 139, 247)", "rgb(255, 178, 43)", "rgb(255, 53, 244)", "rgb(155, 153, 144)"]
+                            }]
+                        },
+                        "options": {
+                            "tooltips": {
+                                "callbacks": {
+                                    "label": function (tooltipItem, data) {
+                                        var allData = data.datasets[tooltipItem.datasetIndex].data;
+                                        var tooltipLabel = data.labels[tooltipItem.index];
+                                        var tooltipData = allData[tooltipItem.index];
+                                        var total = 0;
+                                        for (var i in allData) {
+                                            total += allData[i];
+                                        }
+                                        var tooltipPercentage = Math.round((tooltipData / total) * 100);
+                                        return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+                                    }
+                                }
+                            }
+                        }
+                    });
+            }
+            if (@Model.AlertsSummary.Any()) {
+
+                let alertsSummaryLabels = JSON.parse('@Json.Serialize(@Model.AlertsSummary.Skip(1).Select(x => x.v))');
+                let alertsSummaryValues = JSON.parse('@Json.Serialize(@Model.AlertsSummary.Skip(1).Select(x => x.value))');
+                new Chart(document.getElementById("summaryAlerts"),
+                    {
+                        "type": "pie",
+                        "data": {
+                            "labels": alertsSummaryLabels,
+                            "datasets": [{
+                                "label": "Alerts summary",
+                                "data": alertsSummaryValues,
+                                "backgroundColor": ["rgb(239, 83, 80)", "rgb(57, 139, 247)", "rgb(255, 178, 43)", "rgb(255, 53, 244)", "rgb(155, 153, 144)"]
+                            }]
+                        },
+                        "options": {
+                            "tooltips": {
+                                "callbacks": {
+                                    "label": function (tooltipItem, data) {
+                                        var allData = data.datasets[tooltipItem.datasetIndex].data;
+                                        var tooltipLabel = data.labels[tooltipItem.index];
+                                        var tooltipData = allData[tooltipItem.index];
+                                        var total = 0;
+                                        for (var i in allData) {
+                                            total += allData[i];
+                                        }
+                                        var tooltipPercentage = Math.round((tooltipData / total) * 100);
+                                        return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+                                    }
+                                }
+                            }
+                        }
+                    });
+            }
+        });
+    </script>
+}
