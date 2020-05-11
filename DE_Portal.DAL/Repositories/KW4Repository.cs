@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DE_Portal.DAL.Interfaces;
+using DE_Portal.DAL.Models;
 using DE_Portal.DAL.RawSqlHelpers;
 using DE_Portal2020.Models;
 using Microsoft.Data.SqlClient;
@@ -32,6 +33,17 @@ namespace DE_Portal.DAL.Repositories
                 var hardwareFailureSummary = db.QueryFirst<HardwareFailureSummary>(ChartsSqlHelper.HardwareFailuresSummary(), uidParam);
                 var hardwareFailureDetails = db.Query<HardwareFailureDetails>(ChartsSqlHelper.HardwareFailuresDetails(), uidParam);
                 return new ChartsModel(closedTickets, openTickets, alerts, alertsSummary, hardwareFailureSummary, hardwareFailureDetails);
+            }
+        }
+
+        public AlertsModel GetAlerts(int userUid)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                var uidParam = new { ClientID = userUid };
+                var alerts = db.Query<SdsAlert>(AlertsSqlHelper.SdsAlerts(), uidParam);
+                var deletedAlerts = db.Query<SdsAlert>(AlertsSqlHelper.Sds_DeletedAlerts(), uidParam);
+                return new AlertsModel(alerts, deletedAlerts);
             }
         }
     }

@@ -1,24 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DE_Portal.DAL.Interfaces;
+using DE_Portal2020.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using DE_Portal2020.Models;
-using DE_Portal.DAL.Models.DEWeb;
-using DE_Portal.DAL.Models.KW4;
-using Microsoft.AspNetCore.Identity;
-using DE_Portal.DAL.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
-using DE_Portal.DAL.RawSqlHelpers;
-using System.Data;
-using Dapper;
-using DE_Portal.DAL.Repositories;
-using DE_Portal.DAL.Interfaces;
-using System.Globalization;
+using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace DE_Portal2020.Controllers
 {
@@ -56,12 +43,7 @@ namespace DE_Portal2020.Controllers
         public IActionResult ServiceLevelAgreements()
         {
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

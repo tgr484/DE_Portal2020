@@ -8,12 +8,6 @@
             <h3 class="text-themecolor">GENERAL INFORMATION</h3>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
     <div class="row text-center">
         <div class="col-12">
             <div class="card">
@@ -21,18 +15,18 @@
                     <h4>Welcome to the Digital Edge Client Portal</h4>
                     <br>
                     For immediate assistance please open a support ticket by either clicking on “Open Support Ticket” or by emailing <a href="mailto:ticket@digitaledge.net">support@digitaledge.net</a>.
-</div>
+                </div>
             </div>
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Tickets for @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("en"))</h4>
-                        @if(Model.ClosedTickets.TotalTickets > 0)
+                        @if (Model.ClosedTickets.TotalTickets > 0)
                         {
-                               <div>
-                                   <canvas id="closedTickets" height="75"></canvas>
-                               </div>
-                        }                        
+                            <div>
+                                <canvas id="closedTickets" height="75"></canvas>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -62,12 +56,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Open Tickets and Status</h4>
-                        @if(Model.OpenTickets.TotalTickets > 0)
+                        @if (Model.OpenTickets.TotalTickets > 0)
                         {
                             <div>
                                 <canvas id="openTickets" height="75"></canvas>
                             </div>
-                        }                        
+                        }
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -93,12 +87,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Active Alerts</h4>
-                        @if(Model.Alerts.TotalAlerts > 0)
+                        @if (Model.Alerts.TotalAlerts > 0)
                         {
                             <div>
                                 <canvas id="activeAlerts" height="75"></canvas>
                             </div>
-                        }                        
+                        }
                     </div>
                 </div>
                 <div class="table-responsive">

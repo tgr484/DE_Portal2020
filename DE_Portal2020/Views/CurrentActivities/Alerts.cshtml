@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Portal - Real Time Alerts";
+}
+@model DE_Portal.DAL.Models.AlertsModel
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">GENERAL ESCALATIONS</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    Active Alerts
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Device</th>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                            <th>AlertType</th>
+                            <th>Count</th>
+                            <th>Crit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var alert in Model.SdsAlerts)
+                        {
+                            string modalId = "sdsAlert" + alert.ID;
+                            <div id="@modalId" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">                                        
+                                        <div class="modal-body">
+                                            <b>ID: @alert.ID</b><br>
+                                            <b>Message: </b> @alert.AlertMessage <br>
+                                            <b>Value: </b> @alert.AlertValue<br>
+                                            <b>Escalation Procedure: </b><br>@alert.EscallationProcedure.Replace("\n", "<br>")<br>
+                                            <b>Comment: </b> @alert.Comment<br>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <tr>
+                                <td><a data-toggle="modal" data-target="#@modalId">@alert.ID</a></td>
+                                <td>@alert.DeviceName</td>
+                                <td>@alert.ts</td>
+                                <td>@alert.LongDesc</td>
+                                <td>@alert.AlertType</td>
+                                <td>@alert.AlertCounter</td>
+                                <td>@alert.Criticality</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    Last 20 Cleared Alerts
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Device</th>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                            <th>AlertType</th>
+                            <th>Count</th>
+                            <th>Crit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var alert in Model.SdsDeletedAlerts)
+                        {
+                            string modalId = "deletedAlert" + alert.ID;
+                            <div id="@modalId" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <b>ID: @alert.ID</b><br>
+                                            <b>Message: </b> @alert.AlertMessage <br>
+                                            <b>Value: </b> @alert.AlertValue<br>
+                                            <b>Escalation Procedure: </b><br>@alert.EscallationProcedure.Replace("\n", "<br>")<br>
+                                            <b>Comment: </b> @alert.Comment<br>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <tr>
+                                <td><a data-toggle="modal" data-target="#@modalId">@alert.ID</a></td>
+                                <td>@alert.DeviceName</td>
+                                <td>@alert.ts</td>
+                                <td>@alert.LongDesc</td>
+                                <td>@alert.AlertType</td>
+                                <td>@alert.AlertCounter</td>
+                                <td>@alert.Criticality</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+}
+
