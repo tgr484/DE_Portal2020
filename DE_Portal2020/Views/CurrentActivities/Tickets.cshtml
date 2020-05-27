@@ -82,7 +82,7 @@
                             </td>
                             <td>@ticket.OpenDate</td>
                             <td>@ticket.PortalPriority</td>
-                            <td>@ticket.PortalUserId</td>
+                            <td>@ticket.PortalUser</td>
                         </tr>
                     }
                     </tbody>
@@ -97,7 +97,7 @@
             $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
                 var checked = $('#checkbox').is(':checked');
                 console.log(aData);
-                if (!checked && (aData[3] != "3" && aData[3] != "4" && aData[3] != "9")) {
+                if (!checked && (aData[3] != "Closed" && aData[3] != "Rejected" && aData[3] != "Close Pending")) {
                     return true;
                 }
                 if (checked) {

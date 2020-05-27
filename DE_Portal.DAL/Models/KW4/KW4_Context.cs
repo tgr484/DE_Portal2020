@@ -9676,6 +9676,11 @@ namespace DE_Portal.DAL.Models.KW4
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.TypeId).HasColumnName("TypeID");
+
+                entity.HasOne(d => d.PortalUser)
+                    .WithMany(p => p.TicketPortalUser)
+                    .HasForeignKey(d => d.PortalUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TicketApprovalStatus>(entity =>

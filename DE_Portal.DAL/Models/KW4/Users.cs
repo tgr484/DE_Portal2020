@@ -53,6 +53,7 @@ namespace DE_Portal.DAL.Models.KW4
             Am = new HashSet<ProjectTrackingProject>();
             Os = new HashSet<ProjectTrackingProject>();
             Tl = new HashSet<ProjectTrackingProject>();
+            TicketPortalUser = new HashSet<Ticket>();
         }
 
         public int Id { get; set; }
@@ -138,6 +139,8 @@ namespace DE_Portal.DAL.Models.KW4
         public virtual ICollection<ProjectTrackingProject> Am { get; set; }
         public virtual ICollection<ProjectTrackingProject> Tl { get; set; }
         public virtual ICollection<ProjectTrackingProject> Os { get; set; }
+
+        public virtual ICollection<Ticket> TicketPortalUser { get; set; }
 
 
     }

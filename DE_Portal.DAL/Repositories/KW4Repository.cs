@@ -101,9 +101,7 @@ namespace DE_Portal.DAL.Repositories
                     SessionId = t.TicketId.ToString("n"),
                     //AllowChangeStatus = t.Owner != null && !String.IsNullOrEmpty(allowClientChangeTicketStatusOwnerUID) && allowClientChangeTicketStatusOwnerUID == t.Owner.Login,
                     PortalPriority = t.PortalPriority.HasValue ? PortalPriorities.ContainsKey(t.PortalPriority.Value) ? PortalPriorities[t.PortalPriority.Value] : "" : "",
-                    //PortalUser = t.PortalUserId.HasValue ? ClientPortalUsers.ContainsKey(t.PortalUserId.Value) ? ClientPortalUsers[t.PortalUserId.Value] : "" : "",
-                    PortalPriorityId = t.PortalPriority.HasValue ? t.PortalPriority.Value.ToString() : "",
-                    PortalUserId = t.PortalUserId.HasValue ? t.PortalUserId.Value.ToString() : "",
+                    PortalUser = t.PortalUser != null ? t.PortalUser.Name : "",
                     OpenedBy = (allowReport && t.AdminNotes != null) ? (deNetworkRegexp.IsMatch(t.AdminNotes) ? "Opened By DE" : "Non-DE") : "",
                     AllowExternalLink = allowExternalLink
                 }).ToList();

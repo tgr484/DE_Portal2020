@@ -51,6 +51,8 @@ namespace DE_Portal.DAL.Models.KW4
         public int? SatisfactionStatusId { get; set; }
         public int? PortalPriority { get; set; }
         public int? PortalUserId { get; set; }
+
+        public Users PortalUser { get; set; }
         public string ChangeRequestInfo { get; set; }
 
         public virtual ICollection<EmailDump> EmailDump { get; set; }
