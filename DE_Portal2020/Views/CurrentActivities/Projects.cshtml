@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Portal - Projects";
+}
+@model IEnumerable<DE_Portal.DAL.Models.ProjectModel>;
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Projects</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    All
+                    Acttive
+                    Closed
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="projects" class="table">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Start Date</th>
+                            <th>Delivery Date</th>
+                            <th>Users</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tfoot class="on-header">
+                        <tr>
+                            <th>Project</th>
+                            <th>Start Date</th>
+                            <th>Delivery Date</th>
+                            <th>Users</th>
+                            <th>Description</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var p in Model)
+                        {
+                            <tr>
+                                <td>@p.Name</td>
+                                <td>@p.StartDate</td>
+                                <td>@p.DeliveryDate</td>
+                                <td>
+                                    <div>AM: @p.Am</div>
+                                    <div>TL: @p.Tl</div>
+                                    <div>OS: @p.Os</div>
+                                </td>
+                                <td>@Html.Raw(p.Description)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            //$.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+            //    var checked = $('#checkbox').is(':checked');
+            //    console.log(aData);
+            //    if (!checked && (aData[3] != "3" && aData[3] != "4" && aData[3] != "9")) {
+            //        return true;
+            //    }
+            //    if (checked) {
+            //        return true;
+            //    }
+            //    return false;
+            //});
+            $('#projects tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            var otable = $('#projects').DataTable(
+                {
+                    //"order": [[4, "desc"]],
+
+                });
+            // Apply the search
+            otable.columns().every(function () {
+
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+            //$('#checkbox').on("click", function (e) {
+            //    //console.log('click');
+            //    otable.draw();
+            //});
+        });
+    </script>
+}
+

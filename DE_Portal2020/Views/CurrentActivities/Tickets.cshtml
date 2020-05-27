@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewData["Title"] = "Tickets";
+}
+@model IEnumerable<DE_Portal.DAL.Models.TicketModel>
+<div class="container-fluid">
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">LATEST 20 TICKETS</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <input id="checkbox" type="checkbox">Include Closed Tickets
+                <table class="table" id="tickets">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email from</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Open date	</th>
+                            <th>Priority</th>
+                            <th>Assigned to</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot class="on-header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Email from</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Open date	</th>
+                            <th>Priority</th>
+                            <th>Assigned to</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var ticket in Model)
+                        {
+                            @*string modalId = "sdsAlert" + alert.ID;
+                                <div id="@modalId" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <b>ID: @alert.ID</b><br>
+                                                <b>Message: </b> @alert.AlertMessage <br>
+                                                <b>Value: </b> @alert.AlertValue<br>
+                                                <b>Escalation Procedure: </b><br>@alert.EscallationProcedure.Replace("\n", "<br>")<br>
+                                                <b>Comment: </b> @alert.Comment<br>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <tr>
+                                <td>@ticket.Id</td>
+                                <td>@ticket.EmailFrom</td>
+                                <td>@ticket.Subject</td>
+                                <td>
+                                    @ticket.Status
+                                @*@{
+                                        string status = string.Empty;
+                                        switch (ticket.StatusId)
+                                        {
+                                            case 8: status = "Pending"; break;
+                                            case 9: status = "Close Pending"; break;
+                                            case 1: status = "New"; break;
+                                            case 2: status = "In Process"; break;
+                                            case 3: status = "Closed"; break;
+                                            case 4: status = "Rejected"; break;
+                                        }
+                                        @status
+                                    }*@
+                            </td>
+                            <td>@ticket.OpenDate</td>
+                            <td>@ticket.PortalPriority</td>
+                            <td>@ticket.PortalUserId</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+                var checked = $('#checkbox').is(':checked');
+                console.log(aData);
+                if (!checked && (aData[3] != "3" && aData[3] != "4" && aData[3] != "9")) {
+                    return true;
+                }
+                if (checked) {
+                    return true;
+                }
+                return false;
+            });
+            $('#tickets tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            var otable = $('#tickets').DataTable(
+                {
+                    "order": [[4, "desc"]],
+
+                });
+            // Apply the search
+            otable.columns().every(function () {
+
+                var that = this;
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+            $('#checkbox').on("click", function (e) {
+                //console.log('click');
+                otable.draw();
+            });
+        });
+    </script>
+}
+

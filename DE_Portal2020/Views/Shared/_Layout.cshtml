@@ -13,24 +13,25 @@
     <title>@ViewData["Title"]</title>
     @*<link rel="canonical" href="https://www.wrappixel.com/templates/adminwrap/" />*@
     <!-- Bootstrap Core CSS -->
-    <environment names="Staging,Production, Development">
-        @*<link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">*@
+<environment names="Staging,Production, Development">
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">*@
 
-        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
-        <!-- page css -->
-        <link href="~/css/login-register-lock.css" rel="stylesheet" asp-append-version="true">
-        <!-- Custom CSS -->
-        <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
-
-        <!-- You can change the theme colors from here -->
-        <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </environment>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
+    <!-- page css -->
+    <link href="~/css/login-register-lock.css" rel="stylesheet" asp-append-version="true">
+    <!-- Custom CSS -->
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/responsive.dataTables.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
+    <!-- You can change the theme colors from here -->
+    <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</environment>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -141,8 +142,8 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a asp-area="" asp-controller="CurrentActivities" asp-action="Alerts">Alerts </a></li>
                                 <li><a href="#">Alerts Summary</a></li>
-                                <li><a href="#">Tickets</a></li>
-                                <li><a href="#">Projects</a></li>
+                                <li><a asp-area="" asp-controller="CurrentActivities" asp-action="Tickets">Tickets</a></li>
+                                <li><a asp-controller="CurrentActivities" asp-action="Projects">Projects</a></li>
                                 <li><a href="#">Scheduled Activities</a></li>
                             </ul>
                         </li>
@@ -214,7 +215,6 @@
     <!-- ============================================================== -->
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
-    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -224,6 +224,9 @@
         <!-- Bootstrap tether Core JavaScript -->
         <script src="~/js/popper.min.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>
+        <script src="~/js/dataTables.responsive.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.dataTables.min.js" asp-append-version="true"></script>
         <script src="~/js/waves.js" asp-append-version="true"></script>
         <script src="~/js/sidebarmenu.js" asp-append-version="true"></script>
         <script src="~/js/sticky-kit.min.js" asp-append-version="true"></script>

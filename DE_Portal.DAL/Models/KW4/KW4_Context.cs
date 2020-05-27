@@ -414,7 +414,7 @@ namespace DE_Portal.DAL.Models.KW4
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=KW4_CLEAN;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=KW4;Trusted_Connection=True;");
             }
         }
 
@@ -7816,6 +7816,26 @@ namespace DE_Portal.DAL.Models.KW4
                     .HasColumnName("ts")
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.Client)
+                .WithMany(p => p.ProjectTrackingProjects)
+                .HasForeignKey(d => d.ClientId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Am)
+                .WithMany(p => p.Am)
+                .HasForeignKey(d => d.PersonResponsibleId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Tl)
+                .WithMany(p => p.Tl)
+                .HasForeignKey(d => d.ApprovedBy)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Os)
+                .WithMany(p => p.Os)
+                .HasForeignKey(d => d.Overseer)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<ProjectTrackingProjectStatementOfCompletionFile>(entity =>

@@ -25,6 +25,7 @@ namespace DE_Portal.DAL.Models.KW4
             PermissionClientLogin = new HashSet<PermissionClientLogin>();
             RecuringTicket = new HashSet<RecuringTicket>();
             ScheduledClientReport = new HashSet<ScheduledClientReport>();
+            ProjectTrackingProjects = new HashSet<ProjectTrackingProject>();
         }
 
         public int Id { get; set; }
@@ -61,6 +62,7 @@ namespace DE_Portal.DAL.Models.KW4
         public string DeviceAuditEmail { get; set; }
         public string EscalationProcedureUpdated { get; set; }
 
+        public virtual ICollection<ProjectTrackingProject> ProjectTrackingProjects {get; set;}
         public virtual ICollection<ClientAdministrator> ClientAdministrator { get; set; }
         public virtual ICollection<ClientHardware> ClientHardware { get; set; }
         public virtual ICollection<ClientLogin> ClientLogin { get; set; }

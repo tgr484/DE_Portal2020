@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DE_Portal.DAL.Interfaces;
 using DE_Portal.DAL.Models;
 using DE_Portal.DAL.Repositories;
+using DE_Portal2020.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,9 @@ namespace DE_Portal2020
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            services.AddOptions();
+            services.Configure<AppSettings>(AppConfiguration.GetSection("AppSettings"));
             services.AddTransient<IKW4, KW4Repository>(provider => new KW4Repository(AppConfiguration.GetSection("ConnectionStrings:KW4").Value));
 
             services.AddControllersWithViews();

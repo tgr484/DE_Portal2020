@@ -16,12 +16,17 @@ namespace DE_Portal.DAL.Models.KW4
         public int Id { get; set; }
         public string Name { get; set; }
         public int ClientId { get; set; }
+
+        public Client Client { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public int PersonResponsibleId { get; set; }
+
+        public DE_Portal.DAL.Models.KW4.Users Am { get; set; } 
         public string Description { get; set; }
         public bool Done { get; set; }
         public int? ApprovedBy { get; set; }
+        public DE_Portal.DAL.Models.KW4.Users Tl { get; set; }
         public string HardWare { get; set; }
         public string SoftWare { get; set; }
         public byte[] Architecture { get; set; }
@@ -32,6 +37,8 @@ namespace DE_Portal.DAL.Models.KW4
         public bool IsTesting { get; set; }
         public string Attn { get; set; }
         public int? Overseer { get; set; }
+        public DE_Portal.DAL.Models.KW4.Users Os { get; set; }
+
         public DateTime? ConfirmDate { get; set; }
         public bool IsHardDate { get; set; }
         public bool HasToBeConfirmByClient { get; set; }

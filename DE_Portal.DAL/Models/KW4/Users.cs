@@ -50,6 +50,9 @@ namespace DE_Portal.DAL.Models.KW4
             TicketPriority = new HashSet<TicketPriority>();
             TicketResponse = new HashSet<TicketResponse>();
             UserCertification = new HashSet<UserCertification>();
+            Am = new HashSet<ProjectTrackingProject>();
+            Os = new HashSet<ProjectTrackingProject>();
+            Tl = new HashSet<ProjectTrackingProject>();
         }
 
         public int Id { get; set; }
@@ -66,6 +69,8 @@ namespace DE_Portal.DAL.Models.KW4
         public string DomainName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string Name { get => FirstName + " " + LastName; }
         public DateTime? HireDate { get; set; }
         public string Phone { get; set; }
         public int? IsShift { get; set; }
@@ -129,5 +134,11 @@ namespace DE_Portal.DAL.Models.KW4
         public virtual ICollection<TicketPriority> TicketPriority { get; set; }
         public virtual ICollection<TicketResponse> TicketResponse { get; set; }
         public virtual ICollection<UserCertification> UserCertification { get; set; }
+
+        public virtual ICollection<ProjectTrackingProject> Am { get; set; }
+        public virtual ICollection<ProjectTrackingProject> Tl { get; set; }
+        public virtual ICollection<ProjectTrackingProject> Os { get; set; }
+
+
     }
 }

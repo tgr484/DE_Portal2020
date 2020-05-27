@@ -1,4 +1,5 @@
 ﻿using DE_Portal.DAL.Models;
+using DE_Portal.DAL.Models.KW4;
 using DE_Portal2020.Models;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,8 @@ namespace DE_Portal.DAL.Interfaces
     {
         ChartsModel GetCharts(int userUid);
         AlertsModel GetAlerts(int userUid);
+        IEnumerable<ProjectModel> GetProjects(int userUid);
+
+        IEnumerable<TicketModel> GetTickets(int userUid, string userEmail, string ticketsOnlyAccess, bool isAdmin);
     }
 }
