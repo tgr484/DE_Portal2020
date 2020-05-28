@@ -53,6 +53,9 @@ namespace DE_Portal.DAL.Models.KW4
         public int? PortalUserId { get; set; }
 
         public Users PortalUser { get; set; }
+
+        public Users Owner { get; set; }
+
         public string ChangeRequestInfo { get; set; }
 
         public virtual ICollection<EmailDump> EmailDump { get; set; }

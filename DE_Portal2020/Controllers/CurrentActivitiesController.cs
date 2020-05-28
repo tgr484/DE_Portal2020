@@ -33,7 +33,7 @@ namespace DE_Portal2020.Controllers
 
         public IActionResult Tickets()
         {            
-            var model = _kw4Repo.GetTickets(Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UID")?.Value), User.Claims.FirstOrDefault(x => x.Type == "Email")?.Value, AppSettings.TicketsOnlyAccess, User.Claims.FirstOrDefault(x => x.Type == "Name").ToString() == "RUMC");
+            var model = _kw4Repo.GetTickets(Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UID")?.Value), User.Claims.FirstOrDefault(x => x.Type == "Email")?.Value, User.Claims.FirstOrDefault(x => x.Type == "Name")?.Value, AppSettings.TicketsOnlyAccess, User.Claims.FirstOrDefault(x => x.Type == "Name").ToString() == "RUMC");
             return View(model);
         }
 

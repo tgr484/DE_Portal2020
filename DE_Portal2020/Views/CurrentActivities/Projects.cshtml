@@ -11,11 +11,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    All
-                    Acttive
-                    Closed
-                </div>
+                <div id="record-filters" class="card-body">
+                        <label id="gridDisplayActiveLabel" class="btn btn-primary">
+                            <input type="radio" name="GridDisplay" id="gridDisplayActive" autocomplete="off" value="Active" /> Active
+                        </label>
+                        <label id="gridDisplayClosedLabel" class="btn btn-primary">
+                            <input type="radio" name="GridDisplay" id="gridDisplayClosed" autocomplete="off" value="Closed" /> Closed
+                        </label>
+                        <label id="gridDisplayAllLabel" class="btn btn-primary active">
+                            <input type="radio" name="GridDisplay" id="gridDisplayAll" autocomplete="off" value="All" checked/> All
+                        </label>
+                    </div>
             </div>
             <div class="table-responsive">
                 <table id="projects" class="table">
@@ -26,6 +32,7 @@
                             <th>Delivery Date</th>
                             <th>Users</th>
                             <th>Description</th>
+                            <td style="display:none">Active</td>
                         </tr>
                     </thead>
                     <tfoot class="on-header">
@@ -35,6 +42,7 @@
                             <th>Delivery Date</th>
                             <th>Users</th>
                             <th>Description</th>
+                            <td style="display:none">Active</td>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -50,6 +58,11 @@
                                     <div>OS: @p.Os</div>
                                 </td>
                                 <td>@Html.Raw(p.Description)</td>
+                                
+                                @{var val = p.IsActive ? "active" : "not";
+                                    <td style="display:none">@val</td>
+                                }
+
                             </tr>
                         }
                     </tbody>
@@ -61,43 +74,42 @@
 @section Scripts {
     <script type="text/javascript">
         $(function () {
-            //$.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
-            //    var checked = $('#checkbox').is(':checked');
-            //    console.log(aData);
-            //    if (!checked && (aData[3] != "3" && aData[3] != "4" && aData[3] != "9")) {
-            //        return true;
-            //    }
-            //    if (checked) {
-            //        return true;
-            //    }
-            //    return false;
-            //});
+            $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
+                var all = $('#gridDisplayAll')[0].checked;
+                var closed = $('#gridDisplayClosed')[0].checked;
+                var active = $('#gridDisplayActive')[0].checked;
+                //console.log(aData);
+                var condition = aData[5];
+                if (all) {
+                    return true;
+                } else if (active) {
+                    return (condition == "active");
+                } else if (closed) {
+                    return (condition != "active");
+                }
+                return false;
+            });
+            var otable = $('#projects').DataTable();
             $('#projects tfoot th').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
             });
-            var otable = $('#projects').DataTable(
-                {
-                    //"order": [[4, "desc"]],
-
-                });
+            
             // Apply the search
             otable.columns().every(function () {
-
                 var that = this;
                 $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {
+                        console.log("Seatch: " + this.value);
                         that
                             .search(this.value)
                             .draw();
                     }
                 });
             });
-            //$('#checkbox').on("click", function (e) {
-            //    //console.log('click');
-            //    otable.draw();
-            //});
+            $(document).on("click", "#record-filters", function () {
+                otable.draw();
+            });
         });
     </script>
 }
-

@@ -13,6 +13,6 @@ namespace DE_Portal.DAL.Interfaces
         AlertsModel GetAlerts(int userUid);
         IEnumerable<ProjectModel> GetProjects(int userUid);
 
-        IEnumerable<TicketModel> GetTickets(int userUid, string userEmail, string ticketsOnlyAccess, bool isAdmin);
+        IEnumerable<TicketModel> GetTickets(int userUid, string userEmail, string userName, string ticketsOnlyAccess, bool isAdmin);
     }
 }

@@ -9681,6 +9681,10 @@ namespace DE_Portal.DAL.Models.KW4
                     .WithMany(p => p.TicketPortalUser)
                     .HasForeignKey(d => d.PortalUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(d => d.Owner)
+                    .WithMany(p => p.TicketOwner)
+                    .HasForeignKey(d => d.StatusAdminId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<TicketApprovalStatus>(entity =>

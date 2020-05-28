@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Tickets";
 }
 @model IEnumerable<DE_Portal.DAL.Models.TicketModel>
@@ -65,26 +64,13 @@
                                 <td>@ticket.EmailFrom</td>
                                 <td>@ticket.Subject</td>
                                 <td>
-                                    @ticket.Status
-                                @*@{
-                                        string status = string.Empty;
-                                        switch (ticket.StatusId)
-                                        {
-                                            case 8: status = "Pending"; break;
-                                            case 9: status = "Close Pending"; break;
-                                            case 1: status = "New"; break;
-                                            case 2: status = "In Process"; break;
-                                            case 3: status = "Closed"; break;
-                                            case 4: status = "Rejected"; break;
-                                        }
-                                        @status
-                                    }*@
-                            </td>
-                            <td>@ticket.OpenDate</td>
-                            <td>@ticket.PortalPriority</td>
-                            <td>@ticket.PortalUser</td>
-                        </tr>
-                    }
+                                    @ticket.Status                                    
+                                </td>
+                                <td>@ticket.OpenDate</td>
+                                <td>@ticket.PortalPriority</td>
+                                <td>@ticket.PortalUser</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -96,7 +82,7 @@
         $(function () {
             $.fn.dataTableExt.afnFiltering.push(function (oSettings, aData, iDataIndex) {
                 var checked = $('#checkbox').is(':checked');
-                console.log(aData);
+                //console.log(aData);
                 if (!checked && (aData[3] != "Closed" && aData[3] != "Rejected" && aData[3] != "Close Pending")) {
                     return true;
                 }
@@ -116,7 +102,6 @@
                 });
             // Apply the search
             otable.columns().every(function () {
-
                 var that = this;
                 $('input', this.footer()).on('keyup change', function () {
                     if (that.search() !== this.value) {

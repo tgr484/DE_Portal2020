@@ -51,7 +51,7 @@ namespace DE_Portal.DAL.Repositories
             }
         }
 
-        public IEnumerable<TicketModel> GetTickets(int userUid, string userEmail, string ticketsOnlyAccess, bool isAdmin)
+        public IEnumerable<TicketModel> GetTickets(int userUid, string userEmail, string userName, string ticketsOnlyAccess, bool isAdmin)
         {
             string DENetworkMatch = "192.168.11.";
             string DENetworkMatch2 = "95.140.194.";
@@ -64,7 +64,8 @@ namespace DE_Portal.DAL.Repositories
             Dictionary<string, string> allowClientChangeTicketStatus = new Dictionary<string, string>
                                                        {
                                                            { "rumc", "rumc_contact" },
-                                                           { "dedemo", "kmozg" }
+                                                           { "dedemo", "kmozg" },
+                                                           { "detest", "detest" }
                                                        };
             string DENetworkPattern = String.Format("({0})|({1})|({2})", DENetworkMatch, DENetworkMatch2, DENetworkMatch3).Replace(".", "\\.");
 
@@ -76,16 +77,16 @@ namespace DE_Portal.DAL.Repositories
             .ToArray();
             bool allowExternalLink = !(TicketsOnlyAccess.Any(i => i.ToLower() == userEmail));
             bool allowReport = false;
+            string allowClientChangeTicketStatusOwnerUID = string.Empty;
+            if (allowClientChangeTicketStatus.ContainsKey(userName.ToLower()))
+            {
+                allowClientChangeTicketStatusOwnerUID = allowClientChangeTicketStatus[userName.ToLower()];
+                allowReport = true;
+            }
             using (var ctx = new KW4_Context())
             {
                 var tickets = ctx.Set<Ticket>().Where(t =>
-                t.ClientId == userUid
-                //&& ((t.StatusId != 3 && t.StatusId != 4 && t.StatusId != 9) /*|| chkClosed.Checked*/)
-                //&& (/*!chkOpenedByDE.Checked ||*/ t.AdminNotes.Contains(DENetworkMatch) || t.AdminNotes.Contains(DENetworkMatch2) || t.AdminNotes.Contains(DENetworkMatch3))
-                // && (/*!chkMineOnly.Checked || */t.PortalUserId.GetValueOrDefault(0) == userUid)
-                // && (/*!bShowHelpDesksOnly ||*/ t.TypeId == 4)
-                //&& (!bFilterByPortalUsers || filterByPortalUsers.Contains(t.PortalUserId.GetValueOrDefault(0)) || t.PortalUserId.GetValueOrDefault(0) == 0)
-                //&& (String.IsNullOrEmpty(filterSubject) || subjects.Contains(t.Subject))
+                t.ClientId == userUid                
                 )
                 .OrderByDescending(t => t.OpenDate)
                 .Take(ticketsLimit)
@@ -99,7 +100,7 @@ namespace DE_Portal.DAL.Repositories
                     Status = t.Status(),
                     OpenDate = t.OpenDate,
                     SessionId = t.TicketId.ToString("n"),
-                    //AllowChangeStatus = t.Owner != null && !String.IsNullOrEmpty(allowClientChangeTicketStatusOwnerUID) && allowClientChangeTicketStatusOwnerUID == t.Owner.Login,
+                    AllowChangeStatus = t.Owner != null && !String.IsNullOrEmpty(allowClientChangeTicketStatusOwnerUID) && allowClientChangeTicketStatusOwnerUID == t.Owner.Uid,
                     PortalPriority = t.PortalPriority.HasValue ? PortalPriorities.ContainsKey(t.PortalPriority.Value) ? PortalPriorities[t.PortalPriority.Value] : "" : "",
                     PortalUser = t.PortalUser != null ? t.PortalUser.Name : "",
                     OpenedBy = (allowReport && t.AdminNotes != null) ? (deNetworkRegexp.IsMatch(t.AdminNotes) ? "Opened By DE" : "Non-DE") : "",

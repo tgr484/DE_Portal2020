@@ -142,6 +142,8 @@ namespace DE_Portal.DAL.Models.KW4
 
         public virtual ICollection<Ticket> TicketPortalUser { get; set; }
 
+        public virtual ICollection<Ticket> TicketOwner { get; set; }
+
 
     }
 }
