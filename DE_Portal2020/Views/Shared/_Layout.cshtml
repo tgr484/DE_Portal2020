@@ -24,6 +24,7 @@
     <link href="~/css/responsive.dataTables.min.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/datatables.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/css/fullcalendar.css" rel="stylesheet" asp-append-version="true">
 
     <!-- You can change the theme colors from here -->
     <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
@@ -146,7 +147,7 @@
                                 <li><a href="#">Alerts Summary</a></li>
                                 <li><a asp-area="" asp-controller="CurrentActivities" asp-action="Tickets">Tickets</a></li>
                                 <li><a asp-controller="CurrentActivities" asp-action="Projects">Projects</a></li>
-                                <li><a href="#">Scheduled Activities</a></li>
+                                <li><a asp-controller="CurrentActivities" asp-action="ScheduledActivities">Scheduled Activities</a></li>
                             </ul>
                         </li>
                         @*<li>
@@ -236,6 +237,11 @@
         <script src="~/js/jquery.sparkline.min.js" asp-append-version="true"></script>
         <script src="~/js/custom.js" asp-append-version="true"></script>
         <script src="~/js/Chart.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-ui.min.js" asp-append-version="true"></script>
+        <script src="~/js/moment.js" asp-append-version="true"></script>
+        <script src="~/js/fullcalendar.js" asp-append-version="true"></script>
+        @*<script src="~/js/cal-init.js" asp-append-version="true"></script>*@
+
     </environment>
     @RenderSection("Scripts", required: false)
     <!-- slimscrollbar scrollbar JavaScript -->

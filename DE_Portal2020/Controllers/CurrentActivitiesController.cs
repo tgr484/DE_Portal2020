@@ -4,6 +4,7 @@ using DE_Portal.DAL.Interfaces;
 using DE_Portal2020.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -41,6 +42,19 @@ namespace DE_Portal2020.Controllers
         {
             var model = _kw4Repo.GetProjects(Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UID")?.Value));
             return View(model);
+        }
+        
+        public IActionResult ScheduledActivities()
+        {
+            //var model = _kw4Repo.GetProjects(Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UID")?.Value));
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetEvents(DateTime start, DateTime end)
+        {
+            var events = _kw4Repo.GetEvents(Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "UID")?.Value), start, end);
+            return Json(events);
         }
     }
 }

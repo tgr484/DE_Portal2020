@@ -18,7 +18,7 @@ namespace DE_Portal.DAL.Models.KW4
         public int Id { get; set; }
         public int StatusId { get; set; }
         public int StatusAdminId { get; set; }
-        public DateTime? OpenDate { get; set; }
+        public DateTime OpenDate { get; set; }
         public DateTime? StatusDate { get; set; }
         public DateTime? CloseDate { get; set; }
         public string EmailFrom { get; set; }
