@@ -37,7 +37,7 @@ namespace DE_Portal.DAL.Models
         public DateTime ts { get; set; }
         public string Comment { get; set; }
         public string LongDesc { get; set; }
-        public int UID { get; set; }
+        public string UID { get; set; }
         public string EscallationProcedure { get; set; }
     }
 }

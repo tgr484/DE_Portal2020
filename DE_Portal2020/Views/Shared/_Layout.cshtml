@@ -13,28 +13,28 @@
     <title>@ViewData["Title"]</title>
     @*<link rel="canonical" href="https://www.wrappixel.com/templates/adminwrap/" />*@
     <!-- Bootstrap Core CSS -->
-<environment names="Staging,Production, Development">
-    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">*@
+    <environment names="Staging,Production, Development">
+        @*<link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">*@
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
-    <!-- page css -->
-    <link href="~/css/login-register-lock.css" rel="stylesheet" asp-append-version="true">
-    <!-- Custom CSS -->
-    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/responsive.dataTables.min.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/datatables.css" rel="stylesheet" asp-append-version="true">
-    <link href="~/css/fullcalendar.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
+        <!-- page css -->
+        <link href="~/css/login-register-lock.css" rel="stylesheet" asp-append-version="true">
+        <!-- Custom CSS -->
+        <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/css/responsive.dataTables.min.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/css/datatables.css" rel="stylesheet" asp-append-version="true">
+        <link href="~/css/fullcalendar.css" rel="stylesheet" asp-append-version="true">
 
-    <!-- You can change the theme colors from here -->
-    <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</environment>
+        <!-- You can change the theme colors from here -->
+        <link href="~/css/default_theme.css" id="theme" rel="stylesheet" asp-append-version="true">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </environment>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -101,7 +101,11 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                <button data-toggle="modal" data-target="#openTicket" type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> Create ticket</button>
+                            </div>
+                        </li>
                         <li class="nav-item dropdown u-pro">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="hidden-md-down">@this.User.Claims.FirstOrDefault(x => x.Type == "Name")?.Value &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
@@ -151,44 +155,44 @@
                             </ul>
                         </li>
                         @*<li>
-            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Inventory </span></a>
-            <ul aria-expanded="false" class="collapse">
-                <li><a href="#">Device List </a></li>
-                <li><a href="#">Sys Logs </a></li>
-                <li><a href="#">Device Audit </a></li>
-                <li><a href="#">Hardware </a></li>
-                <li><a href="#">Software </a></li>
-                <li><a href="#">Documents & Maps </a></li>
-                <li><a href="#">Network Configuration Repository </a></li>
-                <li><a href="#">IP Addresses </a></li>
-                <li><a href="#">Tape Repository </a></li>
-                <li><a href="#">Vendors </a></li>
-            </ul>
-        </li>
-        <li>
-            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Support Settings </span></a>
-            <ul aria-expanded="false" class="collapse">
-                <li><a href="#">IT Scheduling </a></li>
-            </ul>
-        </li>
-        <li>
-            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Monitoring </span></a>
-            <ul aria-expanded="false" class="collapse">
-                <li><a href="#">Performance </a></li>
-                <li><a href="#">Content Monitoring </a></li>
-                <li><a href="#">E-mail </a></li>
-                <li><a href="#">Business Processes </a></li>
-                <li><a href="#">Monitoring Status </a></li>
-                <li><a href="#">Change Requests </a></li>
-                <li><a href="#">File Watcher </a></li>
-            </ul>
-        </li>
-        <li>
-            <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Reports </span></a>
-        </li>
-        <li>
-            <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">DEdemo Tools </span></a>
-        </li>*@
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Inventory </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Device List </a></li>
+                                    <li><a href="#">Sys Logs </a></li>
+                                    <li><a href="#">Device Audit </a></li>
+                                    <li><a href="#">Hardware </a></li>
+                                    <li><a href="#">Software </a></li>
+                                    <li><a href="#">Documents & Maps </a></li>
+                                    <li><a href="#">Network Configuration Repository </a></li>
+                                    <li><a href="#">IP Addresses </a></li>
+                                    <li><a href="#">Tape Repository </a></li>
+                                    <li><a href="#">Vendors </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Support Settings </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">IT Scheduling </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Monitoring </span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="#">Performance </a></li>
+                                    <li><a href="#">Content Monitoring </a></li>
+                                    <li><a href="#">E-mail </a></li>
+                                    <li><a href="#">Business Processes </a></li>
+                                    <li><a href="#">Monitoring Status </a></li>
+                                    <li><a href="#">Change Requests </a></li>
+                                    <li><a href="#">File Watcher </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Reports </span></a>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">DEdemo Tools </span></a>
+                            </li>*@
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -222,6 +226,87 @@
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
+    <!--Open ticket modal-->
+    <div id="openTicket" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="vcenter">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div style="width: 425px; text-align: left;" class="ticket-form">
+                        <div>
+                            Need to contact a technical support engineer?<br />
+                            Please complete the following form - it will be dealt with by one of DE's highly trained technical support engineers. To help us assist you better, <br />
+                            please provide as much specific information as you can.<br /><br />
+                        </div>
+                        <span class="red">*</span>indicates required field
+                    </div>
+                    <table style="text-align: left;" class="form ticket-form">
+                        <tr>
+                            <td>
+                                First Name:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketFirstName" />
+                            </td>
+                            <td>
+                                Last Name:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketLastName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Email:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketEmail" />
+                            </td>
+                            <td>
+                                Confirm email:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketEmail2" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Call back phone number:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketPhone" />
+                            </td>
+                            <td>
+                                Alternate email:<br />
+                                <input type="text" id="CreateTicketAltEmail" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Company name:<br />
+                                <input type="text" id="CreateTicketCompany" />
+                            </td>
+                            <td>
+                                Priority:
+                                <input type="radio" id="CreateTicketLow" name="CreateTicketPriority" /><label for="CreateTicketLow">Low</label>
+                                <input type="radio" id="CreateTicketHigh" name="CreateTicketPriority" /><label for="CreateTicketHigh" class="red">High</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Subject:<span class="red">*</span><br />
+                                <input type="text" id="CreateTicketSubject" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Description of the problem:<br />
+                                <textarea id="CreateTicketDescr" style="width: 100%;"></textarea>
+                            </td>
+                        </tr>                        
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <environment names="Development, Staging, Production">
         <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
         <!-- Bootstrap tether Core JavaScript -->
